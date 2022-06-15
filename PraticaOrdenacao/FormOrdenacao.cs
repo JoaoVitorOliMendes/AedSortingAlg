@@ -80,22 +80,7 @@ namespace Pratica5 {
 
         private void bolhaToolStripMenuItem1_Click_1(object sender, EventArgs e) {
             
-            int[] vetor = new int[1000]; // TODO (tamanho deverá ser escolhido pelo usuário)
-            Preenchimento.Aleatorio(vetor, 1000); // TODO (preenchimento inicial deverá ser escolhido pelo usuário)
-            var stopwatch = new Stopwatch();
-            stopwatch.Start(); // inicia cronômetro
-            OrdenacaoEstatistica.Bolha(vetor);
-            stopwatch.Stop(); // interrompe cronômetro
-            long elapsed_time = stopwatch.ElapsedMilliseconds; // calcula o tempo decorrido
-            MessageBox.Show(this,
-                  "Tamanho do vetor: TODO" +
-                  "\nOrdenação inicial: TODO" +
-                  "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
-                  "\nNº de comparações: TODO" +
-                  "\nNº de trocas: TODO",
-                  "Estatísticas do Método Bolha",
-                  MessageBoxButtons.OK,
-                  MessageBoxIcon.Information);
+            
         }
 
         private void crescenteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,6 +186,615 @@ namespace Pratica5 {
         private void decrescenteToolStripMenuItem6_Click(object sender, EventArgs e)
         {
             iniciaAnimacao(() => OrdenacaoGrafica.mergeSort(vet, 0, vet.Length - 1, panel), 3);
+        }
+
+        private void aleatórioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.Bolha(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatório" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Bolha",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.Bolha(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Bolha",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrscenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.Bolha(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Bolha",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.selecao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatório" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.selecao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.selecao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.insercao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatorio" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Inserção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.insercao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Inserção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.insercao(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Inserção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.shellSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatorio" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.shellSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.shellSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método Seleção",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.heapSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatorio" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método HeapSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.heapSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método HeapSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.heapSort(vetor);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método HeapSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.quickSort(vetor, 0, vetor.Length -1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatorio" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método QuickSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.quickSort(vetor, 0, vetor.Length - 1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método QuickSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.quickSort(vetor, 0, vetor.Length - 1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método QuickSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void aleatórioToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Aleatorio(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.mergeSort(vetor, 0, vetor.Length - 1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Aleatorio" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método MergeSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void crescenteToolStripMenuItem13_Click(object sender, EventArgs e)
+        {
+            OrdenacaoEstatistica.cont_c = 0;
+            OrdenacaoEstatistica.cont_t = 0;
+            try
+            {
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Crescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.mergeSort(vetor, 0, vetor.Length - 1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Crescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método MergeSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
+        }
+
+        private void decrescenteToolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OrdenacaoEstatistica.cont_c = 0;
+                OrdenacaoEstatistica.cont_t = 0;
+                int[] vetor = new int[int.Parse(textBox1.Text)];
+                Preenchimento.Decrescente(vetor, 1000);
+                var stopwatch = new Stopwatch();
+                stopwatch.Start(); // inicia cronômetro
+                OrdenacaoEstatistica.mergeSort(vetor, 0, vetor.Length - 1);
+                stopwatch.Stop(); // interrompe cronômetro
+                long elapsed_time = stopwatch.ElapsedMilliseconds;
+                MessageBox.Show(this,
+                      "Tamanho do vetor: " + vetLengthTxt.Text +
+                      "\nOrdenação inicial: Decrescente" +
+                      "\n\nTempo de execução: " + String.Format("{0:F4} seg", elapsed_time / 1000.0) +
+                      "\nNº de comparações: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_c) +
+                      "\nNº de trocas: " + String.Format("{0:n0}", OrdenacaoEstatistica.cont_t),
+                      "Estatísticas do Método MergeSort",
+                      MessageBoxButtons.OK,
+                      MessageBoxIcon.Information);
+            }
+            catch
+            {
+                MessageBox.Show("Por favor digite um Tamanho do Vetor válido", "AVISO", MessageBoxButtons.OK);
+            }
         }
     }
 }
